@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rent A Ride - Your Ultimate Car Rental Solution in Zimbabwe</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlalDLrCNO3/1qE3g5z6Q72i+w+eJz/SgR0+V5k+N8t6y5t6g5/m+B5j/8t7gS5dG5w+v5N5t6Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <style>
+        /* Universal Styles & Variables */
+        :root {
+            --primary-color: #007bff; /* Blue */
+            --primary-dark: #0056b3;
+            --secondary-color: #6c757d; /* Gray */
+            --accent-color: #dc3545; /* Red for new elements */
+            --accent-dark: #c82333; /* Darker red */
+            --dark-color: #212529; /* Deep dark gray */
+            --light-color: #f8f9fa; /* Light gray */
+            --white-color: #ffffff;
+            --border-color: #dee2e6;
+            --text-color: #495057;
+            --heading-color: #343a40;
+            --shadow-light: 0 4px 10px rgba(0, 0, 0, 0.05);
+            --shadow-medium: 0 8px 20px rgba(0, 0, 0, 0.1);
+            --transition-speed: 0.3s ease-in-out;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-color);
+            overflow-x: hidden; /* Prevent horizontal scroll from responsive elements */
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 15px; /* Add internal padding */
+            overflow: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--heading-color);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            font-weight: 700;
+        }
+
+        h1 { font-size: 3.5rem; }
+        h2 { font-size: 2.5rem; }
+        h3 { font-size: 1.8rem; }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color var(--transition-speed);
+        }
+
+        a:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            text-align: center;
+            transition: background-color var(--transition-speed), color var(--transition-speed), border-color var(--transition-speed);
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: var(--white-color);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            text-decoration: none;
+        }
+
+        .btn-secondary {
+            background: var(--secondary-color);
+            color: var(--white-color);
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+            text-decoration: none;
+        }
+
+        .btn-outline-primary {
+            background: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-outline-primary:hover {
+            background: var(--primary-color);
+            color: var(--white-color);
+            text-decoration: none;
+        }
+
+        .btn-light {
+            background: var(--white-color);
+            color: var(--primary-color);
+            border: 1px solid var(--border-color);
+        }
+        .btn-light:hover {
+            background: var(--light-color);
+        }
+
+        /* Added Red Button */
+        .btn-danger {
+            background-color: var(--accent-color); /* Red color */
+            color: var(--white-color);
+        }
+        .btn-danger:hover {
+            background-color: var(--accent-dark); /* Darker red */
+        }
+
+
+        /* Header */
+        header {
+            background: var(--white-color);
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: var(--shadow-light);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo a {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--dark-color);
+            text-decoration: none;
+            display: flex; /* For potential icon alongside text */
+            align-items: center;
+        }
+
+        .logo a .logo-text {
+            display: inline-block;
+            transition: transform var(--transition-speed);
+        }
+
+        .logo a:hover .logo-text {
+            transform: scale(1.05); /* Subtle scale up on hover */
+        }
+
+        nav ul {
+            display: flex;
+            gap: 25px;
+        }
+
+        nav ul li a {
+            color: var(--dark-color);
+            font-weight: 600;
+            padding: 5px 0;
+            position: relative;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width var(--transition-speed);
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            /* CORRECTED IMAGE PATH */
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/automobile-automotive-car-116675.jpg') no-repeat center center/cover;
+            color: var(--white-color);
+            text-align: center;
+            padding: 120px 0;
+            position: relative;
+            display: flex;
+            align-items: center;
+            min-height: 600px; /* Ensure sufficient height */
+        }
+
+        .hero-section .container {
+            z-index: 2; /* Bring content above overlay */
+        }
+
+        .hero-section h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            color: var(--white-color);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+        }
+
+        .hero-section p {
+            font-size: 1.5rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+
+        /* Booking Form */
+        .booking-form {
+            background: var(--white-color);
+            padding: 35px;
+            border-radius: 10px;
+            box-shadow: var(--shadow-medium);
+            margin-top: 50px;
+            max-width: 950px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: left;
+            color: var(--dark-color);
+            border: 1px solid var(--border-color);
+        }
+
+        .booking-form h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--heading-color);
+            font-size: 2rem;
+        }
+
+        .booking-form form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--heading-color);
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            font-size: 1rem;
+            color: var(--text-color);
+            transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+            outline: none;
+        }
+
+        .booking-form button[type="submit"] {
+            grid-column: 1 / -1; /* Spans all columns */
+            padding: 18px;
+            font-size: 1.2rem;
+            margin-top: 20px;
+        }
+
+        /* Section common styling */
+        .featured-cars, .how-it-works, .testimonials, .animated-cars-section, .login-section, .faq-section, .about-us-section {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .featured-cars h2, .how-it-works h2, .testimonials h2, .animated-cars-section h2, .login-section h2, .faq-section h2, .about-us-section h2 {
+            font-size: 3rem;
+            margin-bottom: 50px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .featured-cars h2::after, .how-it-works h2::after, .testimonials h2::after, .animated-cars-section h2::after, .login-section h2::after, .faq-section h2::after, .about-us-section h2::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -15px;
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        /* Car Grid Display */
+        .car-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .car-card {
+            background: var(--white-color);
+            border-radius: 10px;
+            box-shadow: var(--shadow-light);
+            overflow: hidden;
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+            text-align: left;
+            border: 1px solid var(--border-color);
+        }
+
+        .car-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .car-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .car-card-content {
+            padding: 20px;
+        }
+
+        .car-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+            color: var(--heading-color);
+        }
+
+        .car-card .price {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .car-card ul {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+
+        .car-card ul li {
+            flex: 1 1 48%; /* Allows two items per row */
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .car-card ul li i {
+            margin-right: 10px;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+
+        .car-card .btn-secondary {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 12px;
+        }
+
+        /* How It Works Section */
+        .how-it-works {
+            background-color: var(--primary-color);
+            color: var(--white-color);
+            padding: 80px 0;
+        }
+
+        .how-it-works h2 {
+            color: var(--white-color);
+        }
+        .how-it-works h2::after {
+            background-color: var(--white-color);
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .step-card {
+            background-color: rgba(255, 255, 255, 0.15); /* Semi-transparent white */
+            color: var(--white-color);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: var(--shadow-light);
+            transition: background-color var(--transition-speed), transform var(--transition-speed);
+        }
+
+        .step-card:hover {
+            background-color: rgba(255, 255, 255, 0.25);
+            transform: translateY(-5px);
+        }
+
+        .step-card i {
+            font-size: 3.5rem;
+            margin-bottom: 25px;
+            color: var(--white-color);
+        }
+
+        .step-card h3 {
+            color: var(--white-color);
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .step-card p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            background-color: var(--white-color);
+            padding: 80px 0;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: var(--light-color);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: var(--shadow-light);
+            text-align: left;
+            border: 1px solid var(--border-color);
+        }
+
+        .testimonial-card .quote {
+            font-style: italic;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+            font-size: 1.1rem;
+        }
+
+        .testimonial-card .author {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-top: 10px;
+            display: block;
+        }
+
+        .testimonial-card .rating {
+            color: gold; /* Or use an icon font for stars */
+            margin-bottom: 10px;
+        }
+
+        /* Animated Cars Section (Placeholder for complex animations) */
+        .animated-cars-section {
+            background-color: var(--dark-color);
+            color: var(--white-color);
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden; /* Hide overflowing animations */
+        }
+
+        .animated-cars-section h2, .animated-cars-section p {
+            color: var(--white-color);
+            z-index: 2; /* Ensure text is above animated elements */
+            position: relative;
+        }
+
+        .animated-cars-section h2::after {
+            background-color: var(--accent-color);
+        }
+
+        .animated-cars-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1; /* Cars behind text */
+        }
+
+        /* Example of a simple car animation (you'd duplicate for multiple cars) */
+        .animated-car {
+            position: absolute;
+            bottom: -50px; /* Start off-screen */
+            width: 150px;
+            height: 80px;
+            /* Placeholder for a generic car image */
+            background: url('https://pngimg.com/uploads/car_PNG1650.png') no-repeat center center/contain;
+            animation: drive-left-to-right 20s linear infinite;
+            opacity: 0.6;
+        }
+
+        .animated-car:nth-child(1) {
+            left: -200px;
+            animation-delay: 0s;
+        }
+        .animated-car:nth-child(2) {
+            left: -400px;
+            animation-delay: 5s; /* Stagger animation */
+            transform: scaleX(-1); /* Make it drive right-to-left */
+            /* Placeholder for another generic car image */
+            background: url('https://pngimg.com/uploads/car_PNG1658.png') no-repeat center center/contain;
+        }
+        .animated-car:nth-child(3) {
+            left: -600px;
+            animation-delay: 10s;
+            opacity: 0.4;
+            width: 120px; /* Smaller car */
+            height: 60px;
+        }
+
+        @keyframes drive-left-to-right {
+            0% {
+                left: -20%;
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-5px) rotate(1deg); /* Slight bounce/tilt */
+            }
+            100% {
+                left: 120%;
+                transform: translateY(0) rotate(0deg);
+            }
+        }
+
+        /* Login Section */
+        .login-section {
+            background-color: var(--white-color);
+            padding: 80px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .login-form-container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 40px;
+            background: var(--light-color);
+            border-radius: 10px;
+            box-shadow: var(--shadow-medium);
+            text-align: left;
+            border: 1px solid var(--border-color);
+        }
+
+        .login-form-container h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.2rem;
+            color: var(--heading-color);
+        }
+        .login-form-container h2::after {
+            background-color: var(--accent-color); /* Red underlin */
+        }
+
+        .login-form-container .form-group {
+            margin-bottom: 20px;
+        }
+
+        .login-form-container input[type="email"],
+        .login-form-container input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            font-size: 1rem;
+            color: var(--text-color);
+            transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+        }
+
+        .login-form-container input:focus {
+            border-color: var(--accent-color); /* Red focus border */
+            box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25); /* Red shadow */
+            outline: none;
+        }
+
+        .login-form-container .btn-primary {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1rem;
+            margin-top: 10px;
+        }
+
+        .login-form-container .forgot-password,
+        .login-form-container .create-account {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 0.95rem;
+        }
+        .login-form-container .forgot-password a,
+        .login-form-container .create-account a {
+            color: var(--accent-color); /* Red links */
+        }
+        .login-form-container .forgot-password a:hover,
+        .login-form-container .create-account a:hover {
+            color: var(--accent-dark);
+        }
+
+        /* FAQ Section (Questions/Suggestions) */
+        .faq-section {
+            background-color: var(--light-color);
+            padding: 80px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .faq-section h2::after {
+            background-color: var(--accent-color);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .faq-item {
+            background: var(--white-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow-light);
+        }
+
+        .faq-question {
+            padding: 20px;
+            font-size: 1.15rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--white-color);
+            color: var(--heading-color);
+            transition: background-color var(--transition-speed);
+        }
+        .faq-question:hover {
+            background-color: var(--light-color);
+        }
+
+        .faq-question i {
+            margin-left: 15px;
+            transition: transform var(--transition-speed);
+        }
+
+        .faq-question.active i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            font-size: 1rem;
+            color: var(--text-color);
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+            background-color: var(--light-color);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .faq-answer p {
+            padding-bottom: 20px; /* Padding for content inside hidden answer */
+        }
+
+        .faq-answer.show {
+            max-height: 200px; /* Adjust as needed for content height */
+            padding: 20px;
+        }
+
+        /* About Us Section */
+        .about-us-section {
+            background-color: var(--white-color);
+            padding: 80px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .about-us-section h2::after {
+            background-color: var(--accent-color);
+        }
+
+        .about-us-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .about-us-content p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-color);
+        }
+        
+        .about-us-content .mission-vision {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+
+        .about-us-content .mission-vision div {
+            flex: 1 1 350px;
+            background: var(--light-color);
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-light);
+        }
+
+        .about-us-content .mission-vision h3 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .about-us-content .mission-vision p {
+            font-size: 1rem; /* Smaller text for mission/vision */
+            margin-bottom: 0; /* No bottom margin on last paragraph */
+        }
+
+        .about-us-content .credits {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+            line-height: 1.5;
+            opacity: 0.8;
+            border-top: 1px dashed var(--border-color);
+            padding-top: 20px;
+        }
+        .about-us-content .credits span {
+            font-weight: 600;
+            color: var(--heading-color);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-color);
+            color: var(--white-color);
+            padding: 50px 0 20px;
+            font-size: 0.95rem;
+            border-top: 5px solid var(--primary-color);
+        }
+
+        .footer-columns {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: var(--white-color);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-col p, .footer-col ul li {
+            opacity: 0.8;
+        }
+
+        .footer-col ul {
+            padding: 0;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col ul li a {
+            color: var(--white-color);
+            transition: color var(--transition-speed);
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .footer-col .social-icons {
+            margin-top: 20px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .footer-col .social-icons a {
+            color: var(--white-color);
+            font-size: 1.8rem;
+            transition: color var(--transition-speed);
+        }
+
+        .footer-col .social-icons a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-col p i {
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.7;
+            font-size: 0.85rem; /* Smaller for copyright */
+        }
+        .footer-bottom .watermark {
+            margin-top: 10px;
+            display: block;
+            color: rgba(255, 255, 255, 0.5); /* Lighter text for watermark */
+        }
+        .footer-bottom .watermark a {
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 600;
+        }
+        .footer-bottom .watermark a:hover {
+             color: var(--primary-color);
+        }
+
+
+        .text-center {
+            text-align: center;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 992px) {
+            h1 { font-size: 3rem; }
+            h2 { font-size: 2.2rem; }
+            .hero-section h1 {
+                font-size: 3.5rem;
+            }
+            .hero-section p {
+                font-size: 1.3rem;
+            }
+            .booking-form form {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            header .container {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+
+            nav ul li {
+                margin: 0;
+            }
+
+            .auth-buttons {
+                margin-top: 10px;
+                justify-content: center;
+            }
+
+            .hero-section {
+                padding: 80px 0;
+                min-height: 500px;
+            }
+            .hero-section h1 {
+                font-size: 2.8rem;
+            }
+            .hero-section p {
+                font-size: 1.1rem;
+            }
+
+            .booking-form {
+                margin-top: 30px;
+                padding: 25px;
+            }
+            .booking-form form {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-cars, .how-it-works, .testimonials, .animated-cars-section, .login-section, .faq-section, .about-us-section {
+                padding: 60px 0;
+            }
+            .featured-cars h2, .how-it-works h2, .testimonials h2, .animated-cars-section h2, .login-section h2, .faq-section h2, .about-us-section h2 {
+                font-size: 2rem;
+                margin-bottom: 40px;
+            }
+
+            .car-grid, .steps-grid, .testimonial-grid, .footer-columns {
+                grid-template-columns: 1fr;
+            }
+
+            .car-card, .step-card, .testimonial-card, .login-form-container, .faq-item, .about-us-content .mission-vision div {
+                margin-left: auto;
+                margin-right: auto;
+                max-width: 400px; /* Constrain width on small screens */
+            }
+
+            .animated-car {
+                width: 100px;
+                height: 50px;
+                bottom: -30px;
+            }
+            .about-us-content .mission-vision {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 1.8rem; }
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+            .hero-section p {
+                font-size: 0.95rem;
+            }
+            .logo a {
+                font-size: 1.5rem;
+            }
+            .btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+            .footer-col {
+                text-align: center;
+            }
+            .footer-col .social-icons {
+                justify-content: center;
+            }
+        }
+    </style>
+    </head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html"><span class="logo-text">Rent A Ride</span></a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#booking">Book Now</a></li>
+                    <li><a href="#featured-cars">Cars</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#about-us">About Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <a href="#login" class="btn btn-outline-primary">Login</a>
+                <a href="#" class="btn btn-primary">Sign Up</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <div class="container">
+                <h1>Find Your Perfect Ride, Today.</h1>
+                <p>Easy, fast, and reliable car rentals for every journey in Zimbabwe.</p>
+
+                <div class="booking-form" id="booking">
+                    <h2>Book Your Car</h2>
+                    <form>
+                        <div class="form-group">
+                            <label for="pickup-location">Pickup Location</label>
+                            <input type="text" id="pickup-location" placeholder="e.g., Harare, RG Mugabe Airport" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="return-location">Return Location</label>
+                            <input type="text" id="return-location" placeholder="Same as pickup or different" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="pickup-date">Pickup Date</label>
+                            <input type="date" id="pickup-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="return-date">Return Date</label>
+                            <input type="date" id="return-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="pickup-time">Pickup Time</label>
+                            <input type="time" id="pickup-time" value="09:00" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="return-time">Return Time</label>
+                            <input type="time" id="return-time" value="09:00" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Search Cars</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section class="featured-cars" id="featured-cars">
+            <div class="container">
+                <h2>Our Featured Cars</h2>
+                <div class="car-grid">
+                    <div class="car-card">
+                        <img src="images/lights-car-vehicle-244206.jpg" alt="Blue Audi A5">
+                        <div class="car-card-content">
+                            <h3>Audi A5 Sportback</h3>
+                            <p class="price">$150/day</p>
+                            <ul>
+                                <li><i class="fas fa-users"></i> 4 Seats</li>
+                                <li><i class="fas fa-suitcase"></i> 2 Bags</li>
+                                <li><i class="fas fa-gas-pump"></i> Petrol</li>
+                                <li><i class="fas fa-cogs"></i> Automatic</li>
+                            </ul>
+                            <a href="#" class="btn btn-secondary">View Details</a>
+                        </div>
+                    </div>
+
+                    <div class="car-card">
+                        <img src="images/automobile-automotive-car-116675.jpg" alt="White Range Rover Evoque">
+                        <div class="car-card-content">
+                            <h3>Range Rover Evoque</h3>
+                            <p class="price">$220/day</p>
+                            <ul>
+                                <li><i class="fas fa-users"></i> 5 Seats</li>
+                                <li><i class="fas fa-suitcase"></i> 3 Bags</li>
+                                <li><i class="fas fa-gas-pump"></i> Diesel</li>
+                                <li><i class="fas fa-cogs"></i> Automatic</li>
+                            </ul>
+                            <a href="#" class="btn btn-secondary">View Details</a>
+                        </div>
+                    </div>
+
+                    <div class="car-card">
+                        <img src="https://via.placeholder.com/300x220/DC143C/FFFFFF?text=Sport+Sedan" alt="Red Sport Sedan">
+                        <div class="car-card-content">
+                            <h3>Mercedes-Benz C-Class</h3>
+                            <p class="price">$180/day</p>
+                            <ul>
+                                <li><i class="fas fa-users"></i> 5 Seats</li>
+                                <li><i class="fas fa-suitcase"></i> 2 Bags</li>
+                                <li><i class="fas fa-gas-pump"></i> Petrol</li>
+                                <li><i class="fas fa-cogs"></i> Automatic</li>
+                            </ul>
+                            <a href="#" class="btn btn-secondary">View Details</a>
+                        </div>
+                    </div>
+
+                    <div class="car-card">
+                        <img src="https://via.placeholder.com/300x220/F0F8FF/000000?text=Compact+SUV" alt="White Compact SUV">
+                        <div class="car-card-content">
+                            <h3>Toyota RAV4</h3>
+                            <p class="price">$100/day</p>
+                            <ul>
+                                <li><i class="fas fa-users"></i> 5 Seats</li>
+                                <li><i class="fas fa-suitcase"></i> 3 Bags</li>
+                                <li><i class="fas fa-gas-pump"></i> Petrol</li>
+                                <li><i class="fas fa-cogs"></i> Automatic</li>
+                            </ul>
+                            <a href="#" class="btn btn-secondary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <a href="#" class="btn btn-outline-primary">View All Cars</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="how-it-works" id="how-it-works">
+            <div class="container">
+                <h2>How It Works</h2>
+                <div class="steps-grid">
+                    <div class="step-card">
+                        <i class="fas fa-car-alt"></i>
+                        <h3>1. Choose Your Car</h3>
+                        <p>Browse our wide selection of vehicles online to find your perfect match for your journey.</p>
+                    </div>
+                    <div class="step-card">
+                        <i class="fas fa-calendar-alt"></i>
+                        <h3>2. Select Dates & Location</h3>
+                        <p>Pick your desired pickup and return dates, times, and convenient locations across Zimbabwe.</p>
+                    </div>
+                    <div class="step-card">
+                        <i class="fas fa-file-invoice"></i>
+                        <h3>3. Confirm Booking</h3>
+                        <p>Complete your easy and secure online booking process with flexible payment options.</p>
+                    </div>
+                    <div class="step-card">
+                        <i class="fas fa-key"></i>
+                        <h3>4. Drive Away</h3>
+                        <p>Collect your spotless car at your chosen location and embark on your adventure with confidence!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials" id="testimonials">
+            <div class="container">
+                <h2>What Our Customers Say</h2>
+                <div class="testimonial-grid">
+                    <div class="testimonial-card">
+                        <div class="rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="quote">"Rent A Ride made my business trip so much easier! The car was in perfect condition and the pickup process was seamless. Highly recommend their services in Harare!"</p>
+                        <span class="author">- Tendai M., Client</span>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <p class="quote">"Great value for money! The SUV was perfect for our family holiday to Nyanga. Customer service was friendly and efficient from start to finish."</p>
+                        <span class="author">- Sarah N., Tourist</span>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="quote">"As a recurring client, I'm always impressed with the professionalism and quality of cars. Rent A Ride is my go-to for all my transport needs in Zimbabwe."</p>
+                        <span class="author">- John P., Entrepreneur</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="animated-cars-section">
+            <div class="container">
+                <h2>Our Fleet in Motion</h2>
+                <p>Experience the dynamics of our diverse car collection.</p>
+                <div class="animated-cars-container">
+                    <div class="animated-car"></div>
+                    <div class="animated-car"></div>
+                    <div class="animated-car"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="login-section" id="login">
+            <div class="container">
+                <h2>Login to Your Account</h2>
+                <div class="login-form-container">
+                    <form>
+                        <div class="form-group">
+                            <label for="login-email">Email Address</label>
+                            <input type="email" id="login-email" placeholder="Enter your email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="login-password">Password</label>
+                            <input type="password" id="login-password" placeholder="Enter your password" required>
+                        </div>
+                        <button type="submit" class="btn btn-danger">Login</button>
+                        <div class="forgot-password">
+                            <a href="#">Forgot Password?</a>
+                        </div>
+                        <div class="create-account">
+                            Don't have an account? <a href="#">Sign Up</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section class="faq-section" id="faq">
+            <div class="container">
+                <h2>Questions & Suggestions (FAQ)</h2>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            How do I book a car? <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>You can easily book a car by using the "Book Your Car" form on our homepage. Simply select your desired pickup and return locations, dates, and times, then click "Search Cars" to find available vehicles.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            What are the requirements to rent a car? <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Generally, you need to be at least 21 years old (some car categories may require 25+), possess a valid driver's license for at least one year, and have a valid credit card in your name for the security deposit.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            Can I modify or cancel my reservation? <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, you can modify or cancel your reservation online through your account or by contacting our customer service. Please refer to our Terms of Service for specific cancellation policies and fees.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            Do you offer long-term rentals? <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Absolutely! We provide competitive rates for long-term rentals (monthly or longer). Please contact us directly for a customized quote based on your specific needs.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            What if I have a suggestion for improvement? <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We value your feedback! Please feel free to use the contact information in our footer to send us your suggestions. We're always looking for ways to enhance your experience.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="about-us-section" id="about-us">
+            <div class="container">
+                <h2>About Rent A Ride</h2>
+                <div class="about-us-content">
+                    <p>Welcome to Rent A Ride, your premier car rental service in Zimbabwe. We are committed to providing a seamless, reliable, and enjoyable car rental experience for both locals and international visitors. Our diverse fleet caters to all needs, from compact cars for city exploration to robust SUVs for adventurous safaris.</p>
+                    <p>Founded on principles of customer satisfaction and convenience, Rent A Ride strives to exceed expectations with transparent pricing, well-maintained vehicles, and exceptional customer support. We believe in making every journey memorable and stress-free.</p>
+                    
+                    <div class="mission-vision">
+                        <div>
+                            <h3>Our Mission</h3>
+                            <p>To be the leading car rental provider in Zimbabwe, delivering unparalleled service, a diverse and reliable fleet, and exceptional value to every customer.</p>
+                        </div>
+                        <div>
+                            <h3>Our Vision</h3>
+                            <p>To empower personal and business travel across Zimbabwe by providing accessible, convenient, and high-quality mobility solutions that contribute to our customers' success and satisfaction.</p>
+                        </div>
+                    </div>
+                    <p>We are constantly innovating and expanding our services to meet the evolving needs of our esteemed clientele, ensuring that Rent A Ride remains your first choice for car rentals.</p>
+
+                    <div class="credits">
+                        <p>This website design was originally envisioned and created by <span>Hillary Eland</span> as a conceptual project from <span>Amazon Christian Academy</span>.</p>
+                        <p>In association with <span>Hillary Eland from GD Studios</span>.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-columns">
+                <div class="footer-col">
+                    <h4>Rent A Ride</h4>
+                    <p>Your journey starts here. Reliable and affordable car rentals for every destination in Zimbabwe.</p>
+                    <div class="social-icons">
+                        <a href="https://facebook.com/hillaryeland" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://instagram.com/mindsetvault67" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://x.com/mindsetvault12" target="_blank" aria-label="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
+                        <a href="https://linkedin.com/in/hillary-eland-child-genius" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#booking">Book A Car</a></li>
+                        <li><a href="#featured-cars">Our Cars</a></li>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#about-us">About Us</a></li>
+                        <li><a href="#login">Login</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Main Street, Harare, Zimbabwe</p>
+                    <p><i class="fas fa-phone"></i> <a href="tel:+263776898163">+263 776 898 163</a></p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:hillaryeland@gmail.com">hillaryeland@gmail.com</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rent A Ride. All rights reserved.</p>
+                <p class="watermark">Created by <a href="#" target="_blank">Hillary Eland</a> as a conceptual project from <a href="#" target="_blank">Amazon Christian Academy</a>.</p>
+                <p class="watermark">In association with <a href="#" target="_blank">Hillary Eland from GD Studios</a>.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const faqQuestions = document.querySelectorAll('.faq-question');
+
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', () => {
+                    const answer = question.nextElementSibling; // Get the next sibling, which is the answer
+                    const icon = question.querySelector('i');
+
+                    // Toggle the 'show' class on the answer
+                    answer.classList.toggle('show');
+                    // Toggle the 'active' class on the question for icon rotation
+                    question.classList.toggle('active');
+
+                    // Adjust max-height for smooth transition
+                    if (answer.classList.contains('show')) {
+                        // Set max-height to the scrollHeight to expand it fully
+                        answer.style.maxHeight = answer.scrollHeight + "px";
+                    } else {
+                        // Reset max-height to 0 to collapse it
+                        answer.style.maxHeight = "0";
+                    }
+
+                    // Close other open answers (optional, but good UX)
+                    faqQuestions.forEach(otherQuestion => {
+                        if (otherQuestion !== question && otherQuestion.classList.contains('active')) {
+                            otherQuestion.classList.remove('active');
+                            otherQuestion.nextElementSibling.classList.remove('show');
+                            otherQuestion.nextElementSibling.style.maxHeight = "0";
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
